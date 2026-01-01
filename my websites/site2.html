@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>KOFI Institute - Page 2</title>
+  <style>
+    body {
+      background-image: url('https://images.pexels.com/photos/5124869/pexels-photo-5124869.jpeg');
+      background-size: cover;          
+      background-repeat: no-repeat;    
+      background-attachment: fixed;    
+
+      font-size: 30px;                 
+      font-family: Calibri, sans-serif;
+      font-style: italic;              
+      color: yellow;                   
+
+      margin: 20px;                    
+    }
+
+    /* Logo styling */
+    .logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 100px;
+      height: auto;
+    }
+
+    /* Main content container */
+    .content {
+      background-color: rgba(0,0,0,0.5); /* semi-transparent background */
+      padding: 20px;
+      border-radius: 15px;
+      max-width: 600px;
+    }
+
+    p { color: yellow; }
+    button { font-size: 25px; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+    button:hover { background-color: orange; }
+    a { font-size: 25px; text-decoration: none; color: blue; }
+    a:hover { color: yellow; }
+
+    /* Form styling */
+    form {
+      margin-top: 20px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0 15px 0;
+      font-size: 18px;
+      border-radius: 8px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo -->
+  <img src="logo.png" alt="KOFI Logo" class="logo">
+
+  <!-- Main content wrapped in a div -->
+  <div class="content">
+    <p>HI THERE, Welcome to the SECOND PAGE of KOFI INSTITUTE OF DOCTORING.</p>
+    <p>Fill out the form below to continue your admission process:</p>
+
+    <form action="#" method="post">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" placeholder="Your name" required>
+
+      <label for="age">Age:</label>
+      <input type="number" id="age" name="age" placeholder="Your age" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" placeholder="Your email" required>
+
+      <label for="message">Message:</label>
+      <textarea id="message" name="message" placeholder="Your message" rows="4"></textarea>
+
+      <label for="course">Choose a course:</label>
+      <select id="course" name="course" required>
+        <option value="">--Select a course--</option>
+        <option value="medicine">Medicine</option>
+        <option value="surgery">Surgery</option>
+        <option value="nursing">Nursing</option>
+        <option value="pharmacy">Pharmacy</option>
+      </select>
+
+      <button type="submit">Submit Form</button>
+    </form>
+
+    <br>
+    <a href="site1.html">Back to Site 1</a>
+  </div>
+
+</body>
+</html>

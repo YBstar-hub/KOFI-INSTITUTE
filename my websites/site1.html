@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KOFI Institute - Full Experience</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: Calibri, sans-serif;
+      overflow: hidden;
+    }
+
+    /* --- Modern Welcome Video Styles --- */
+    .video-container {
+      width: 100%;
+      height: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .scene {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+    .scene.active { opacity: 1; }
+
+    .opening-text { font-size: 120px; font-weight: 900; color: white; letter-spacing: 8px; animation: scaleIn 1.5s cubic-bezier(0.34, 1.56, 0.64, 1); text-shadow: 0 10px 40px rgba(0,0,0,0.5);}
+    @keyframes scaleIn {0%{transform:scale(0.5);opacity:0;}60%{transform:scale(1.1);}100%{transform:scale(1);opacity:1;}}
+    .middle-content { width: 100%; max-width: 1200px; padding: 40px; }
+    .icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 60px; margin-bottom: 60px; }
+    .icon-item { display: flex; flex-direction: column; align-items: center; opacity: 0; animation: slideUp 0.8s ease forwards; }
+    .icon-item:nth-child(1){animation-delay:0.2s;} .icon-item:nth-child(2){animation-delay:0.5s;} .icon-item:nth-child(3){animation-delay:0.8s;}
+    @keyframes slideUp { from{transform:translateY(50px);opacity:0;} to{transform:translateY(0);opacity:1;} }
+    .icon-circle { width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;font-size:50px;margin-bottom:20px;border:3px solid rgba(255,255,255,0.3); animation: pulse 2s ease infinite; }
+    @keyframes pulse {0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+    .icon-label { font-size:22px; font-weight:600; color:white; text-align:center; text-shadow:0 2px 10px rgba(0,0,0,0.3);}
+    .message-text { font-size:48px; font-weight:700; color:white; text-align:center; margin:20px 0; opacity:0; text-shadow:0 4px 20px rgba(0,0,0,0.4);}
+    .message-text.show { animation: fadeInSlide 1s ease forwards; }
+    @keyframes fadeInSlide { from{transform:translateX(-30px);opacity:0;} to{transform:translateX(0);opacity:1;} }
+
+    .closing-content { text-align:center; }
+    .logo-reveal { width:200px;height:200px;border-radius:30px;background:rgba(255,255,255,0.95);display:flex;align-items:center;justify-content:center;margin:0 auto 40px;opacity:0;animation:logoFadeIn 1.5s ease forwards; box-shadow:0 20px 60px rgba(0,0,0,0.3);}
+    @keyframes logoFadeIn {0%{transform:scale(0.8) rotate(-10deg);opacity:0;}100%{transform:scale(1) rotate(0deg);opacity:1;}}
+    .logo-text { font-size:56px;font-weight:900;background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text; }
+    .brand-name { font-size:64px;font-weight:900;color:white;margin-bottom:20px;opacity:0;animation:fadeInSlide 1s ease 0.5s forwards;letter-spacing:4px;text-shadow:0 4px 20px rgba(0,0,0,0.4);}
+    .tagline-text { font-size:36px;font-weight:600;color:rgba(255,255,255,0.95);opacity:0;animation:fadeInSlide 1s ease 1s forwards;text-shadow:0 2px 10px rgba(0,0,0,0.3);}
+
+    .controls { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; gap:20px; z-index:100; }
+    .control-btn { padding:12px 30px;font-size:18px;font-weight:600;border:2px solid white;background:rgba(255,255,255,0.2);backdrop-filter:blur(10px); color:white;border-radius:30px; cursor:pointer; transition:all 0.3s ease;}
+    .control-btn:hover { background:rgba(255,255,255,0.3); transform:translateY(-2px); box-shadow:0 5px 20px rgba(0,0,0,0.3);}
+    .progress-bar { position:absolute; bottom:0; left:0; width:0%; height:4px; background:white; transition:width 0.3s ease; box-shadow:0 0 10px rgba(255,255,255,0.5); }
+
+    /* --- Site1 Content Styles --- */
+    .site1-body { 
+      display:none; /* hidden initially */
+      background-image: url('https://images.pexels.com/photos/5124869/pexels-photo-5124869.jpeg');
+      background-size: cover;          
+      background-repeat: no-repeat;    
+      background-attachment: fixed;
+      font-size: 30px;                 
+      font-style: italic;              
+      color: yellow;                   
+      margin: 20px; 
+      height: 100vh;
+    }
+
+    .site1-logo { position:absolute; top:20px; right:20px; width:100px; height:auto; }
+    .site1-content { background-color: rgba(0,0,0,0.5); padding:20px; border-radius:15px; max-width:600px; margin: 50px auto; text-align:center;}
+    .site1-content p { color: yellow; }
+    .site1-content button { background-color: rgba(255,255,255,0.5); font-size:25px; padding:10px 20px; border-radius:8px; cursor:pointer; }
+    .site1-content button:hover { background-color: orange; }
+    .site1-content a { font-size:25px; text-decoration:none; color:blue; }
+    .site1-content a:hover { color: yellow; }
+    .site1-content video { display:block; margin:20px auto; border-radius:15px; box-shadow:0 0 15px rgba(0,0,0,0.5);}
+  </style>
+</head>
+<body class="h-full">
+
+  <!-- === Modern Welcome Video Section === -->
+  <div class="video-container">
+    <div class="scene" id="scene1"><div class="opening-text" id="openingText">Welcome!</div></div>
+    <div class="scene" id="scene2">
+      <div class="middle-content">
+        <div class="icon-grid">
+          <div class="icon-item"><div class="icon-circle">🤝</div><div class="icon-label">Diversity</div></div>
+          <div class="icon-item"><div class="icon-circle">💡</div><div class="icon-label">Innovation</div></div>
+          <div class="icon-item"><div class="icon-circle">🌍</div><div class="icon-label">Community</div></div>
+        </div>
+        <div class="message-text" id="message1">We're glad you're here</div>
+        <div class="message-text" id="message2">Let's grow together</div>
+      </div>
+    </div>
+    <div class="scene" id="scene3">
+      <div class="closing-content">
+        <div class="logo-reveal"><div class="logo-text">K</div></div>
+        <div class="brand-name" id="brandName">KOFI INSTITUTE</div>
+        <div class="tagline-text" id="tagline">Your journey starts now</div>
+      </div>
+    </div>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="controls">
+      <button class="control-btn" id="replayBtn">⟲ Replay</button>
+      <button class="control-btn" id="pauseBtn">⏸ Pause</button>
+    </div>
+  </div>
+
+  <!-- === Site1 Content Section (hidden initially) === -->
+  <div class="site1-body">
+    <img src="logo.png" alt="KOFI Logo" class="site1-logo">
+    <div class="site1-content">
+      <p>HI THERE, Welcome to KOFI INSTITUTE OF DOCTORING.</p>
+      <p>Go to the next page for further admission info</p>
+      <button type="button">Submit</button>
+      <br><br>
+      <a href="site2.html">to site2</a>
+
+      <video width="550" autoplay muted loop>
+        <source src="welcome.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+
+  <script>
+    let currentScene = 1;
+    let isPaused = false;
+    let timeline = null;
+
+    function showScene(sceneNumber){
+      document.querySelectorAll('.scene').forEach(scene => scene.classList.remove('active'));
+      document.getElementById(`scene${sceneNumber}`).classList.add('active');
+      currentScene = sceneNumber;
+    }
+
+    function updateProgress(percent){
+      document.getElementById('progressBar').style.width = percent + '%';
+    }
+
+    function playTimeline(){
+      isPaused = false;
+      document.getElementById('pauseBtn').textContent='⏸ Pause';
+
+      timeline = [
+        setTimeout(()=>{ if(!isPaused){ updateProgress(0); showScene(1); }},100),
+        setTimeout(()=>{ if(!isPaused){ updateProgress(33); showScene(2); document.getElementById('message1').classList.add('show'); }},4000),
+        setTimeout(()=>{ if(!isPaused){ updateProgress(50); document.getElementById('message2').classList.add('show'); }},7000),
+        setTimeout(()=>{ if(!isPaused){ updateProgress(67); }},12000),
+        setTimeout(()=>{ if(!isPaused){ updateProgress(80); showScene(3); }},15000),
+        setTimeout(()=>{ if(!isPaused){ updateProgress(100); showSite1Content(); }},20000) // show content after animation
+      ];
+    }
+
+    function replayVideo(){
+      if(timeline){ timeline.forEach(timeout=>clearTimeout(timeout)); }
+      document.querySelectorAll('.message-text').forEach(msg=>msg.classList.remove('show'));
+      playTimeline();
+    }
+
+    function togglePause(){
+      isPaused=!isPaused;
+      if(isPaused){ document.getElementById('pauseBtn').textContent='▶ Play'; if(timeline){ timeline.forEach(timeout=>clearTimeout(timeout)); } }
+      else { document.getElementById('pauseBtn').textContent='⏸ Pause'; playTimeline(); }
+    }
+
+    function showSite1Content(){
+      document.querySelector('.video-container').style.display='none'; // hide welcome
+      document.querySelector('.site1-body').style.display='block'; // show main content
+      document.body.style.overflow='auto'; // enable scroll if needed
+    }
+
+    document.getElementById('replayBtn').addEventListener('click',replayVideo);
+    document.getElementById('pauseBtn').addEventListener('click',togglePause);
+
+    // start welcome animation
+    playTimeline();
+  </script>
+
+</body>
+</html>
